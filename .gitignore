@@ -1,5 +1,5 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.DS_Store
-*.py[cod]
-*$py.class
+find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
+find . -name __pycache__ -print0 | xargs -0 git rm --ignore-unmatch
+find . -name *.pyc -print0 | xargs -0 git rm --ignore-unmatch
+find . -name *.pyo -print0 | xargs -0 git rm --ignore-unmatch
+
