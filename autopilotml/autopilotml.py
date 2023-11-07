@@ -391,44 +391,6 @@ def training(dataframe, label_column, model_name, problem_type, target_scaler=No
 
 
 
-# if __name__=="__main__":
-#     from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-#     df = load_data(path = "/Volumes/Projects/autopilotml/autopilotml/dataset/titanic_train.csv" , csv=True, header=0)
-#     print(df.head())
-#     print(df.shape)
-#     df = preprocessing(dataframe=df, label_column = 'Survived', missing={'type': 'impute',
-#                                                                     'drop_columns': False, 
-#                                                                     'threshold': 0.25, 
-#                                                                     'strategy_numerical': 'knn',
-#                                                                     'strategy_categorical': 'most_frequent',
-#                                                                     'fill_value': None},
-#                                                                     outlier={'method': 'None',
-#                                                                     'zscore_threshold': 3,
-#                                                                     'iqr_threshold': 1.5,
-#                                                                     'Lc': 0.05, 
-#                                                                     'Uc': 0.95,
-#                                                                     'cap': False})
-    
-#     df, encoder = transformation(dataframe=df, label_column='Survived', type = 'ordinal',target_transform = False, cardinality = True, Cardinality_threshold = 0.3)
-#     df, scaler = scaling(df, label_column= 'Survived', type = 'standard', target_scaling = False)
-#     df, selector = feature_selection(dataframe=df, label_column='Survived', estimator=RandomForestClassifier(), type='rfe', max_features=5, min_features=2, scoring= 'accuracy', 
-#                     cv=5)
-#     training(dataframe=df, label_column='Survived', model_name='GradientBoostingClassifier', problem_type='Classification', 
-#         target_scaler=None, test_split =0.15, hypertune=True)
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
 
 
 
