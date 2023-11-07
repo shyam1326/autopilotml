@@ -1,5 +1,5 @@
-find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch
-find . -name __pycache__ -print0 | xargs -0 git rm --ignore-unmatch
-find . -name *.pyc -print0 | xargs -0 git rm --ignore-unmatch
-find . -name *.pyo -print0 | xargs -0 git rm --ignore-unmatch
+# Ignore Python cache files
+__pycache__
 
+# Ignore macOS .DS_Store files
+.DS_Store
