@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/5fffb9f819ec4a08b98c4109ac7afd37/artifacts
+end_time: 1699237483526
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5fffb9f819ec4a08b98c4109ac7afd37
+run_name: crawling-hound-963
+run_uuid: 5fffb9f819ec4a08b98c4109ac7afd37
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699237479490
+status: 3
+tags: []
+user_id: shyam

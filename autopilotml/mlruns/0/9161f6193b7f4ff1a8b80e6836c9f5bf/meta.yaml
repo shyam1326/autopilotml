@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/9161f6193b7f4ff1a8b80e6836c9f5bf/artifacts
+end_time: 1699237986929
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9161f6193b7f4ff1a8b80e6836c9f5bf
+run_name: skillful-vole-473
+run_uuid: 9161f6193b7f4ff1a8b80e6836c9f5bf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699237984666
+status: 3
+tags: []
+user_id: shyam

@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/311899b112bb4464bed2b46570c6229c/artifacts
+end_time: 1699239360771
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 311899b112bb4464bed2b46570c6229c
+run_name: judicious-grub-678
+run_uuid: 311899b112bb4464bed2b46570c6229c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699239357777
+status: 3
+tags: []
+user_id: shyam

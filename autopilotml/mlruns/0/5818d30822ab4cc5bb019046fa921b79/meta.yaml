@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/5818d30822ab4cc5bb019046fa921b79/artifacts
+end_time: 1699237411899
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5818d30822ab4cc5bb019046fa921b79
+run_name: zealous-newt-742
+run_uuid: 5818d30822ab4cc5bb019046fa921b79
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699237408751
+status: 3
+tags: []
+user_id: shyam

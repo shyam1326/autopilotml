@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/75e2ca07c8d8408cbf9306dd102a2746/artifacts
+end_time: 1699238920008
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 75e2ca07c8d8408cbf9306dd102a2746
+run_name: entertaining-hen-174
+run_uuid: 75e2ca07c8d8408cbf9306dd102a2746
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699238916992
+status: 3
+tags: []
+user_id: shyam

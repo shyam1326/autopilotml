@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/6fc007c340b0450a9823aa7f1bcaaf8b/artifacts
+end_time: 1699238007842
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6fc007c340b0450a9823aa7f1bcaaf8b
+run_name: melodic-boar-555
+run_uuid: 6fc007c340b0450a9823aa7f1bcaaf8b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699238004513
+status: 3
+tags: []
+user_id: shyam

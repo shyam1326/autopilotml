@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/8f3d251d365c469184281278cca8f1c1/artifacts
+end_time: 1699239231635
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8f3d251d365c469184281278cca8f1c1
+run_name: trusting-mare-977
+run_uuid: 8f3d251d365c469184281278cca8f1c1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699239223474
+status: 3
+tags: []
+user_id: shyam

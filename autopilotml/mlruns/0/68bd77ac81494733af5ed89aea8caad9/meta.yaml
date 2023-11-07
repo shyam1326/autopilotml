@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/68bd77ac81494733af5ed89aea8caad9/artifacts
+end_time: 1699237401822
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 68bd77ac81494733af5ed89aea8caad9
+run_name: nebulous-loon-802
+run_uuid: 68bd77ac81494733af5ed89aea8caad9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699237396946
+status: 3
+tags: []
+user_id: shyam

@@ -1,0 +1,10 @@
+digest: 60df02c8
+name: dataset
+profile: '{"num_rows": 134, "num_elements": 1072}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "PassengerId"}, {"type": "double",
+  "name": "Pclass"}, {"type": "double", "name": "Sex"}, {"type": "double", "name":
+  "Age"}, {"type": "double", "name": "SibSp"}, {"type": "double", "name": "Parch"},
+  {"type": "double", "name": "Fare"}, {"type": "double", "name": "Embarked"}]}'
+source: '{"tags": {"mlflow.user": "shyam", "mlflow.source.name": "/Users/shyam/anaconda3/envs/autopilotml/lib/python3.10/site-packages/ipykernel_launcher.py",
+  "mlflow.source.type": "LOCAL"}}'
+source_type: code

@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/74ac91d3fbec4355abbe9549a3870464/artifacts
+end_time: 1699238004476
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 74ac91d3fbec4355abbe9549a3870464
+run_name: colorful-swan-666
+run_uuid: 74ac91d3fbec4355abbe9549a3870464
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699238001740
+status: 3
+tags: []
+user_id: shyam

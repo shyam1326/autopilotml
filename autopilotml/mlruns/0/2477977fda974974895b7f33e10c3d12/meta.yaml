@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/2477977fda974974895b7f33e10c3d12/artifacts
+end_time: 1699238900019
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2477977fda974974895b7f33e10c3d12
+run_name: classy-croc-686
+run_uuid: 2477977fda974974895b7f33e10c3d12
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699238894982
+status: 3
+tags: []
+user_id: shyam

@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/de6a55abf8b344f7acec8a600e0be5f1/artifacts
+end_time: 1699238903349
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: de6a55abf8b344f7acec8a600e0be5f1
+run_name: rebellious-crane-813
+run_uuid: de6a55abf8b344f7acec8a600e0be5f1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699238900067
+status: 3
+tags: []
+user_id: shyam

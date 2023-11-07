@@ -1,0 +1,15 @@
+artifact_uri: file:///Volumes/Projects/autopilotml/autopilotml/mlruns/0/acc6cbbab02545ce9e784925215c29f5/artifacts
+end_time: 1699237419911
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: acc6cbbab02545ce9e784925215c29f5
+run_name: trusting-crab-912
+run_uuid: acc6cbbab02545ce9e784925215c29f5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699237415916
+status: 3
+tags: []
+user_id: shyam
