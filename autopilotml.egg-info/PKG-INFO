@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: autopilotml
+Version: 1.0.2
+Summary: A package for automating machine learning tasks
+Home-page: https://github.com/shyam1326
+Author: Shyam Prasath
+Author-email: shshyam96@gmail.com
+License: MIT
+Project-URL: Source, https://github.com/shyam1326/autopilotml
+Project-URL: Bug Reports, https://github.com/shyam1326/autopilotml/issues
+Project-URL: Documentation, https://github.com/shyam1326/autopilotml/blob/main/README.md
+Keywords: autopilotml
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.8, <3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# autopilotml
+

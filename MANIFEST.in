@@ -1,0 +1,5 @@
+graft autopilotml
+include pyproject.toml
+include requirements.txt
+include setup.py
+global-exclude *.py[cod]

@@ -1,0 +1,2 @@
+[console_scripts]
+autopilotml = autopilotml.__main__:autopilotml
