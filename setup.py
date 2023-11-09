@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="autopilotml",
-    version="1.0.2",
+    version="1.0.3",
     keywords=["autopilotml"],
     author="Shyam Prasath",
     author_email="shshyam96@gmail.com",

@@ -7,16 +7,6 @@ from autopilotml.feature_selection import rfe, rfecv
 from autopilotml.model_building import model_fitting
 from autopilotml.model_tuning import tuner
 
-
-# import read_csv, read_excel, read_sqlite, read_postgres, read_mysql, read_mongo
-# import drop_missing_rows, drop_missing_columns, imputation, inter_quartile_range, remove_outliers_zscore
-# import ordinal_transform, onehot_transform, label_transform
-# import standard_scale, target_scale, robust_scale, maxabs_scale, power_transform, quantile_transform
-# import rfe, rfecv
-# import model_fitting
-# import tuner
-
-
 from sklearn.metrics import mean_squared_error, accuracy_score
 import joblib
 import optuna
@@ -105,8 +95,8 @@ def preprocessing(dataframe, label_column,
                 outlier= {'method': 'None',
                         'zscore_threshold': 3,
                         'iqr_threshold': 1.5,
-                        'Lc': 0.95, 
-                        'Uc': 0.05,
+                        'Lc': 0.25, 
+                        'Uc': 0.75,
                         'cap': False},
                 **kwargs):
     
