@@ -28,7 +28,7 @@ autopilotml/model_tuning/tuning.py
 autopilotml/preprocessing/__init__.py
 autopilotml/preprocessing/imputation.py
 autopilotml/preprocessing/outlier.py
-autopilotml/research/stages.ipynb
+autopilotml/research/autopilotml_examples.ipynb
 autopilotml/research/test.ipynb
 autopilotml/research/.ipynb_checkpoints/stage_1-checkpoint.ipynb
 autopilotml/research/.ipynb_checkpoints/test-checkpoint.ipynb
