@@ -11,7 +11,7 @@
 [![version](https://badge.fury.io/py/autopilotml.svg)](https://badge.fury.io/py/autopilotml)
 <a href="https://pepy.tech/project/autopilotml"><img src="https://pepy.tech/badge/autopilotml" alt="total autopilotml downloads"></a>
 [![license](https://img.shields.io/pypi/l/autopilotml)](LICENSE)
-[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shyam1326/autopilotml/blob/main/autopilotml/research/stages.ipynb)
+[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shyam1326/autopilotml/blob/main/autopilotml/research/autopilotml_examples.ipynb)
 
 
 </div>
