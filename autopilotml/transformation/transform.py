@@ -58,7 +58,7 @@ def label_transform(df, target_column):
         encoder (sklearn.preprocessing.LabelEncoder): The LabelEncoder object used for transformation.
     """
 
-    # OrdinalEncoder for binary categorical data
+    # LabelEncoder for target categorical data
     encoder = LabelEncoder()
     df[target_column] = encoder.fit_transform(df[target_column])
 

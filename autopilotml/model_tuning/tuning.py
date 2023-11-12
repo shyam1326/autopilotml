@@ -1,5 +1,6 @@
 import optuna
 
+
 def tuner(model_name, trial: optuna.Trial):
     """
     This function is used to tune the hyperparameters of the selected model.
@@ -14,8 +15,8 @@ def tuner(model_name, trial: optuna.Trial):
 
     tuner_params = {
         'LinearRegression': lambda:{
-            'fit_intercept': trial.suggest_categorical("fit_intercept", ["True", "False"]), 
-            'positive': trial.suggest_categorical("positive", ["True", "False"])
+            'fit_intercept': trial.suggest_categorical("fit_intercept", [True, False]), 
+            'positive': trial.suggest_categorical("positive", [True, False])
                             },
 
         'BayesianRidge': lambda:{
@@ -25,8 +26,8 @@ def tuner(model_name, trial: optuna.Trial):
             'lambda_2': trial.suggest_float("lambda_2", 1e-9, 1.0, log=True),
             'alpha_1': trial.suggest_float('alpha_1', 1e-8, 1.0, log=True), 
             'alpha_2': trial.suggest_float('alpha_2', 1e-8, 1.0, log=True),
-            'compute_score': trial.suggest_categorical("compute_score", ["True", "False"]),
-            'fit_intercept': trial.suggest_categorical("fit_intercept", ["True", "False"])
+            'compute_score': trial.suggest_categorical("compute_score", [True, False]),
+            'fit_intercept': trial.suggest_categorical("fit_intercept", [True, False])
                         },
 
         'RandomForestRegressor': lambda: {
@@ -34,8 +35,8 @@ def tuner(model_name, trial: optuna.Trial):
             'max_depth': trial.suggest_int('max_depth', 3, 10, step=1),
             'min_samples_split': trial.suggest_int('min_samples_split', 2, 10, step=1),
             'min_samples_leaf': trial.suggest_int('min_samples_leaf', 1, 10, step=1),
-            'max_features': trial.suggest_categorical('max_features', ['auto', 'sqrt', 'log2']),
-            'bootstrap': trial.suggest_categorical('bootstrap', ['True', 'False'])
+            'max_features': trial.suggest_categorical('max_features', ['sqrt', 'log2']),
+            'bootstrap': trial.suggest_categorical('bootstrap', [True, False])
                                 },
 
         'XGBRegressor': lambda: {
@@ -56,7 +57,7 @@ def tuner(model_name, trial: optuna.Trial):
             'max_depth': trial.suggest_int('max_depth', 3, 10, step=1),
             'min_samples_split': trial.suggest_int('min_samples_split', 2, 20, step=1),
             'min_samples_leaf': trial.suggest_int('min_samples_leaf', 1, 20, step=1),
-            'max_features': trial.suggest_categorical('max_features', ['auto', 'sqrt', 'log2'])
+            'max_features': trial.suggest_categorical('max_features', ['sqrt', 'log2'])
             },
 
         'SVR': lambda: {
@@ -70,7 +71,7 @@ def tuner(model_name, trial: optuna.Trial):
             'max_depth': trial.suggest_int('max_depth', 2, 32, step=1),
             'min_samples_split': trial.suggest_int('min_samples_split', 2, 20, step=1),
             'min_samples_leaf': trial.suggest_int('min_samples_leaf', 1, 20, step=1),
-            'max_features': trial.suggest_categorical('max_features', ['auto', 'sqrt', 'log2'])
+            'max_features': trial.suggest_categorical('max_features', ['sqrt', 'log2'])
             },
 
         'KNeighborsRegressor': lambda: {
@@ -93,7 +94,7 @@ def tuner(model_name, trial: optuna.Trial):
             'max_depth': trial.suggest_int('max_depth', 3, 10, step=1),
             'min_samples_split': trial.suggest_int('min_samples_split', 2, 20, step=1),
             'min_samples_leaf': trial.suggest_int('min_samples_leaf', 1, 10, step=1),
-            'max_features': trial.suggest_categorical('max_features', ['auto', 'sqrt', 'log2']),
+            'max_features': trial.suggest_categorical('max_features', ['sqrt', 'log2']),
             'criterion': trial.suggest_categorical('criterion', ['gini', 'entropy']),
             'bootstrap': trial.suggest_categorical('bootstrap', [True, False])
             },
@@ -130,7 +131,7 @@ def tuner(model_name, trial: optuna.Trial):
             'max_depth': trial.suggest_int('max_depth', 2, 32, step=2),
             'min_samples_split': trial.suggest_int('min_samples_split', 2, 20, step=2),
             'min_samples_leaf': trial.suggest_int('min_samples_leaf', 1, 20, step=1),
-            'max_features': trial.suggest_categorical('max_features', ['auto', 'sqrt', 'log2', None]),
+            'max_features': trial.suggest_categorical('max_features', ['sqrt', 'log2', None]),
             'criterion': trial.suggest_categorical('criterion', ['gini', 'entropy'])
             },
 

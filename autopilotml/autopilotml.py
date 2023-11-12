@@ -7,13 +7,14 @@ from autopilotml.feature_selection import rfe, rfecv
 from autopilotml.model_building import model_fitting
 from autopilotml.model_tuning import tuner
 
-from sklearn.metrics import mean_squared_error, accuracy_score
+from sklearn.metrics import mean_squared_error, accuracy_score, r2_score
 import joblib
 import optuna
 import mlflow
 from mlflow import MlflowClient
 from datetime import datetime
 from sklearn.model_selection import train_test_split
+import numpy as np
 import pandas as pd
 import warnings
 warnings.filterwarnings("ignore")
@@ -23,12 +24,15 @@ warnings.filterwarnings("ignore")
 #Stage 1: Data Loading
 
 def load_data(path, csv = True, excel = False, **kwargs):
-    """ This function is used to load the data from the source.
+    """ This function is used to load the data from the source - locally stored files with extension csv or xlsx.
 
     Args:
         path (str): The path to the source file.
+
         csv (bool): If True, the source file is a CSV file.
+
         excel (bool): If True, the source file is an Excel file.
+
         **kwargs: Keyword arguments to pass to pandas.read_csv or pandas.read_excel.
 
     Returns:
@@ -42,22 +46,31 @@ def load_data(path, csv = True, excel = False, **kwargs):
 
     return df
 
-def load_database(database_type, query, sqlite_db_path = None, host= None, port= None, database_name= None, 
+def load_database(database_type, query, sqlite_db_path= None, host= None, port= None, database_name= None, 
                   username= None, password=None, collection_name= None, **kwargs):
     """ This function is used to load the data from the database.
 
     Args:
         database (str): The type of database. For instance 'sqlite', 'mysql', 'postgres', 'mongo'.
+
         query (str): The query to execute.
+
         sqlite_db_path (str): The path to the SQLite database.
 
         The following arguments are used for MySQL, PostgreSQL and MongoDB databases:
+
         host (str): The host name.
+
         port (int): The port number.
+
         database_name (str): The database name.
+
         username (str): The username if exists. by default None.
+
         password (str): The password if exists. by default None.
+
         collection_name (str): The collection name for mongodb database. by default None.
+
         **kwargs: Keyword arguments to pass to sqlite3.connect, psycopg2.connect, mysql.connector.connect, pymongo.MongoClient.
 
     Returns:
@@ -100,35 +113,53 @@ def preprocessing(dataframe, label_column,
                         'cap': False},
                 **kwargs):
     
-    """ This function is used to preprocess the data.
+    """ This function is used to preprocess the data. The preprocessing steps include missing value imputation and 
+    outlier removal.
 
     Args:
         dataframe (pandas.DataFrame): The DataFrame containing the data.
-        label_column (str): The name of the label column.
 
-        missing (dict): The dictionary containing the imputation parameters. 
-        The following parameters are supported:
-        
-        type (str): The type of imputation. Can be one of "drop", "impute".
-        drop_columns (bool): If True, the columns with missing values greater than the threshold will be dropped.
-        threshold (float): The threshold to use for dropping columns with missing values. Must be between 0 and 1.
-        strategy_numerical (str): The imputation strategy to use for numerical columns. Can be one of "mean", "median", "most_frequent", "knn" or "constant".
-        strategy_categorical (str): The imputation strategy to use for categorical columns. Can be one of "most_frequent", or "constant".
-        fill_value (str/int/float): The (str) value to use for imputing missing values when strategy is "constant for object data types, For numerical it should be a int/float".
+        label_column (str): The name of the label column (target feature).
 
-        outlier (dict): The dictionary containing the outlier parameters.
-        The following parameters are supported:
-        method (str): The method to use for removing outliers. Can be one of "zscore", "iqr", "None".
-        iqr_threshold (float): The threshold to use for removing outliers. Must be greater than 0.
-        Lc (float): The lower cut-off value to use for removing outliers. Must be between 0 and 1.
-        Uc (float): The upper cut-off value to use for removing outliers. Must be between 0 and 1.
-        cap (bool): If True, the outliers will be capped to the upper and lower bounds. If False, the outliers will be removed.
+        missing (dict): The dictionary containing the imputation parameters. If you want to change any parameters in the dictionary, you have to pass the entire dictionary with the new values or default values.
+
+            The following parameters are supported:
+            
+            type (str): The type of imputation. Can be one of "drop", "impute".
+                drop: The rows with missing values will be dropped.
+                impute: The missing values will be imputed using the imputation strategy.
+
+            drop_columns (bool): If True, the columns with missing values greater than the threshold will be dropped.
+
+            threshold (float): The threshold to use for dropping columns with missing values. Must be between 0 and 1.
+
+            strategy_numerical (str): The imputation strategy to use for numerical columns. Can be one of "mean", "median", "most_frequent", "knn" or "constant".
+
+            strategy_categorical (str): The imputation strategy to use for categorical columns. Can be one of "most_frequent", or "constant".
+            
+            fill_value (str/int/float): The (str) value to use for imputing missing values when strategy is "constant for object data types, For numerical it should be a int/float".
+
+        outlier (dict): The dictionary containing the outlier parameters. If you want to change any parameters in the dictionary, you have to pass the entire dictionary with the new values or default values.
+
+            The following parameters are supported:
+
+            method (str): The method to use for removing outliers. Can be one of "zscore", "iqr", "None".
+                None = No outlier removal.
+
+            iqr_threshold (float): The threshold to use for removing outliers. Must be greater than 0.
+
+            Lc (float): The lower cut-off percentile of iqr value to use for removing outliers. Must be between 0 and 1. By deafult 0.25.
+
+            Uc (float): The upper cut-off percentile of iqr value to use for removing outliers. Must be between 0 and 1. By deafult 0.75.
+
+            cap (bool): If True, the outliers will be capped to the upper and lower bounds. If False, the outliers will be removed.
+
         **kwargs: Keyword arguments to pass to sklearn KNNImputer.
 
     Returns:
         pandas.DataFrame: The DataFrame containing the preprocessed data.
     """
-
+    
     data = dataframe.copy()
 
     if missing['drop_columns']:
@@ -171,34 +202,38 @@ def preprocessing(dataframe, label_column,
 #Stage 3: Data Transformation
 
 def transformation(dataframe, label_column, type = 'ordinal',target_transform = False, cardinality = True, Cardinality_threshold = 0.3):
-    """ This function is used to transform the feature data.
+    """ This function is used to transform the feature and target data. The target column will be transformed only if the target_transform is True. Only applicable for Classification usecase.
+    If target_transform is True, the function will return the 3 objects, dataframe, encoder and target_encoder. If target_transform is False, the function will return the 2 objects, dataframe and encoder.
 
     Args:
         dataframe (pandas.DataFrame): The DataFrame containing the data.
-        label_column (str): The name of the label column.
-        type (str): The type of transformation. Can be one of "ordinal", "onehot".
+
+        label_column (str): The name of the label column (target column).
+
+        type (str): The type of transformation. Can be one of "ordinal", "onehot", "None". By default "ordinal".
+
         target_transform (bool): If True, the label column will be transformed.
-        cardinality (bool): If True, the columns with cardinality greater than the threshold will be dropped.
-        Cardinality_threshold (float): The threshold to use for dropping columns with cardinality. Must be between 0 and 1.
+
+        cardinality (bool): If True, the categorical columns with cardinality greater than the threshold will be dropped.
+
+        Cardinality_threshold (float): The threshold to use for dropping columns with cardinality (how many unique values). Must be between 1 to any positive value. (e.g) If the thresold is 30. then any categorical column has more than 30 unique values will be dropped.
 
     Returns:
         pandas.DataFrame: The DataFrame containing the transformed data.
+        encoder: The encoder object used for transforming the features.
+        target_encoder: The encoder object used for transforming the target column. Applicable only for Classification usecase.
     """
     categorical_columns = dataframe.select_dtypes(include=['object']).columns
     categorical_columns = categorical_columns.drop([label_column]) if label_column in categorical_columns else categorical_columns
 
 
     if cardinality:
-        drop_columns = [x for x in categorical_columns if dataframe[x].nunique() > Cardinality_threshold*100]
+        drop_columns = [x for x in categorical_columns if dataframe[x].nunique() > Cardinality_threshold]
         # drop_columns = [x for x in drop_columns if x not in label_column or x in categorical_columns]
         print('List of columns dropped due to high cardinality: {}'.format(drop_columns))
         dataframe.drop(drop_columns, axis=1, inplace=True)
         categorical_columns = categorical_columns.drop(drop_columns)
 
-    if target_transform:
-        dataframe, target_encoder = label_transform(dataframe, label_column)
-
-    
     if type == 'ordinal':
         dataframe, encoder = ordinal_transform(dataframe, categorical_columns)
     elif type == 'onehot':
@@ -207,28 +242,37 @@ def transformation(dataframe, label_column, type = 'ordinal',target_transform = 
         print('No transformation applied on features')
     else:
         raise ValueError('The transformation type is not supported.')
+
+    if target_transform:
+        dataframe, target_encoder = label_transform(dataframe, label_column)
+
+        return dataframe, encoder, target_encoder
     
     return dataframe, encoder
 
 #Stage 4: Data Scaling
 
 def scaling(dataframe, label_column, type = 'standard', target_scaling = False):
-    """ This function is used to scale the feature data.
+    """ This function is used to scale the feature and target data. when target_scaling is True, the function will return the 3 objects, dataframe, scaler and target_scaler. 
+    If target_scaling is False, the function will return the 2 objects, dataframe and scaler.
+    Target scaling is applicable only for Regression usecase.
 
     Args:
         dataframe (pandas.DataFrame): The DataFrame containing the data.
+
         label_column (str): The name of the label column.
+
         type (str): The type of scaling. Can be one of "standard", "robust", "maxabs", "power", "quantile".
+
         target_scaling (bool): If True, the label column will be scaled using Sklearn MinMax Scaler. Applicable only for Regression usecase.
 
     Returns:
         pandas.DataFrame: The DataFrame containing the scaled data.
+        scaler: The scaler object used for scaling the features.
+        target_scaler: The scaler object used for scaling the target column. Applicable only for Regression usecase.
     """
     numerical_columns = dataframe.select_dtypes(exclude='object').columns
     numerical_columns = numerical_columns.drop([label_column]) if label_column in numerical_columns else numerical_columns
-
-    if target_scaling:
-        dataframe, target_scaler = target_scale(dataframe, label_column)
 
     if type == 'standard':
         dataframe, scaler = standard_scale(dataframe, numerical_columns)
@@ -246,6 +290,8 @@ def scaling(dataframe, label_column, type = 'standard', target_scaling = False):
         raise ValueError('The scaling type is not supported.')
     
     if target_scaling:
+        dataframe, target_scaler = target_scale(dataframe, label_column)
+
         return dataframe, scaler, target_scaler
     else:
         return dataframe, scaler
@@ -255,8 +301,8 @@ def scaling(dataframe, label_column, type = 'standard', target_scaling = False):
 
 #Stage 6: Feature Selection
 def feature_selection(dataframe, label_column, estimator, type='rfecv', max_features=10, min_features=2, scoring= 'accuracy', 
-                    cv=5, n_jobs= -1, **kwargs):
-    """ This function is used to select the features.
+                    cv=15, n_jobs= -1, **kwargs):
+    """ This function is used to select the top n features from the dataframe.
 
     Args:
         dataframe (pandas.DataFrame): The DataFrame containing the data.
@@ -264,9 +310,9 @@ def feature_selection(dataframe, label_column, estimator, type='rfecv', max_feat
         label_column (str): The name of the label column.
 
         estimator (str): The estimator to use for feature selection. Can be one of "LinearRegression", "BayesianRidge", 
-        "RandomForestRegressor", "XGBRegressor", "GradientBoostingRegressor", "SVR", "DecisionTreeRegressor", 
-        "KNeighborsRegressor", "LogisticRegression", "RandomForestClassifier", "XGBClassifier",
-        "GradientBoostingClassifier", "SVC", "DecisionTreeClassifier", "KNeighborsClassifier", "GaussianNB".
+            "RandomForestRegressor", "XGBRegressor", "GradientBoostingRegressor", "DecisionTreeRegressor", 
+            "LogisticRegression", "RandomForestClassifier", "XGBClassifier",
+            "GradientBoostingClassifier", "DecisionTreeClassifier".
 
         type (str): The type of feature selection. Can be one of "rfe", "rfecv".
 
@@ -274,8 +320,10 @@ def feature_selection(dataframe, label_column, estimator, type='rfecv', max_feat
 
         min_features (int): The minimum number of features to select.
 
-        scoring (str): The scoring function to use for feature selection. Can be one of "accuracy", "f1", "precision", "recall", "roc_auc", "neg_mean_squared_error", "neg_mean_absolute_error", "neg_median_absolute_error", "r2".
-        cv (int): The number of folds to use for cross-validation.
+        scoring (str): The scoring function to use for feature selection. Can be one of "accuracy", "f1",
+            "precision", "recall", "roc_auc", "neg_mean_squared_error", "neg_mean_absolute_error", "neg_median_absolute_error", "r2".
+
+        cv (int): The number of folds to use for cross-validation.By  default 15.
 
         n_jobs (int): The number of jobs to run in parallel.
         
@@ -283,11 +331,12 @@ def feature_selection(dataframe, label_column, estimator, type='rfecv', max_feat
 
     Returns:
         pandas.DataFrame: The DataFrame containing the selected features.
+        selector: The selector object used for selecting the features.
     """
     if type == 'rfe':
         df, selector = rfe(dataframe, label_column, estimator, n_features_to_select=max_features, step=1, verbose=0, **kwargs)
     elif type == 'rfecv':
-        df, selector = rfecv(dataframe, label_column, estimator, scoring, cv, n_jobs, **kwargs)
+        df, selector = rfecv(dataframe, label_column, estimator, scoring, cv, min_features_to_select = min_features, n_jobs=n_jobs, **kwargs)
     elif type == 'None':
         print('No feature selection applied')
         return None
@@ -303,38 +352,40 @@ def training(dataframe, label_column, model_name, problem_type, target_scaler=No
 
     Args:
         dataframe (pandas.DataFrame): The DataFrame containing the data.
+
         label_column (str): The name of the label column.
+
         model_name (str): The name of the model. Can be one of "LinearRegression", "BayesianRidge", "RandomForestRegressor", "XGBRegressor",
                             "GradientBoostingRegressor", "SVR", "DecisionTreeRegressor", "KNeighborsRegressor", "LogisticRegression", 
                             "RandomForestClassifier", "XGBClassifier", "GradientBoostingClassifier", "SVC", "DecisionTreeClassifier", 
                             "KNeighborsClassifier", "GaussianNB".
 
         problem_type (str): The type of problem. Can be one of "Regression", "Classification".
-        target_scaler : The scaler object name used for scaling the label column dduring scaling phase. Applicable only for Regression usecase. 
+
+        target_scaler : The scaler object name used for scaling the label column during scaling phase. Applicable only for Regression usecase. 
+
         test_split (float): The percentage of data to use for testing. it should be 0 to 1.
+
         hypertune (bool): If True, the model will be hypertuned using Optuna.
+
         n_epochs (int): The number of epochs to use for hypertuning.
 
     Returns:
-        sklearn.pipeline.Pipeline: The pipeline containing the trained model.
+        model: The trained model.
     """
     # Split the dataset into train and test
     x_train, x_test, y_train, y_test = train_test_split(dataframe.drop(label_column, axis=1), dataframe[label_column], 
                                                         test_size=test_split, random_state=42)
 
     # with mlflow.start_run(run_name=datetime.now().strftime('%Y-%m-%d_%H:%M:%S')) as run:
-    #     run_id = run.info.run_id
-        # print('MLflow Run ID: {}'.format(run_id))
-        # client = MlflowClient()
-        # client.set_tag(run_id, "mlflow.note.content", f"ML model: {model_name}")
+    #     client = MlflowClient()
 
-        # tags = {"Application": "AutoPilotML"}
-        # mlflow.set_tags(tags)
-
-    # Log the model
-    if "Xgboost" in model_name:
+    #     tags = {"Application": "AutoPilotML"}
+    #     mlflow.set_tags(tags)
+    #     # Log the model
+    if "XGB" in model_name:
         mlflow.xgboost.autolog(log_input_examples=True, log_model_signatures=True, log_models=True, 
-        disable=False, exclusive=False, disable_for_unsupported_versions=False, silent=False,log_post_training_metrics=True
+        disable=False, exclusive=False, disable_for_unsupported_versions=False, silent=False
         )
     else:
         mlflow.sklearn.autolog(log_input_examples=True, log_model_signatures=True, log_models=True, 
@@ -351,11 +402,11 @@ def training(dataframe, label_column, model_name, problem_type, target_scaler=No
             tuner_params = tuner(model_name, trial)
 
             model, y_pred = model_fitting(x_train, x_test, y_train, y_test, model_name= model_name, params= tuner_params)
-            
             if problem_type == 'Regression':
                 if target_scaler is not None:
                     y_pred = target_scaler.inverse_transform(y_pred.reshape(-1,1))
-                accuracy = round(mean_squared_error(y_test, y_pred, squared=False),4)
+                    actual = target_scaler.inverse_transform(np.array(y_test).reshape(-1,1))
+                accuracy = round(mean_squared_error(actual, y_pred, squared=False),4)
             else:
                 accuracy = round(accuracy_score(y_test, y_pred),4)
 
@@ -371,11 +422,13 @@ def training(dataframe, label_column, model_name, problem_type, target_scaler=No
 
         model, y_pred = model_fitting(x_train, x_test, y_train, y_test, model_name= model_name, params= best_params)
 
+
     else:
         model, y_pred = model_fitting(x_train, x_test, y_train, y_test, model_name= model_name)
 
         if problem_type == 'Regression':
             if target_scaler is not None:
+                y_test = target_scaler.inverse_transform(y_test.reshape(-1,1))
                 y_pred = target_scaler.inverse_transform(y_pred.reshape(-1,1))
             accuracy = round(mean_squared_error(y_test, y_pred, squared=False),4)
         else:

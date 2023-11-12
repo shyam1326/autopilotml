@@ -1,3 +1,4 @@
+import numpy as np
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler, MaxAbsScaler, PowerTransformer, QuantileTransformer
 
 
@@ -35,7 +36,7 @@ def target_scale(df, target_column):
 
     # StandardScaler for numerical data
     scaler = MinMaxScaler()
-    df[target_column] = scaler.fit_transform(df[target_column])
+    df[target_column] = scaler.fit_transform(np.array(df[target_column]).reshape(-1, 1))
 
     return df, scaler
 
