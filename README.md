@@ -24,7 +24,7 @@
 
 - `pip install autopilotml`
 
-## Usuage
+## Usage
 
 ### Load data
 
