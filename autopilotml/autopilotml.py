@@ -428,9 +428,9 @@ def training(dataframe, label_column, model_name, problem_type, target_scaler=No
 
         if problem_type == 'Regression':
             if target_scaler is not None:
-                y_test = target_scaler.inverse_transform(y_test.reshape(-1,1))
+                actual = target_scaler.inverse_transform(np.rray(y_test).reshape(-1,1))
                 y_pred = target_scaler.inverse_transform(y_pred.reshape(-1,1))
-            accuracy = round(mean_squared_error(y_test, y_pred, squared=False),4)
+            accuracy = round(mean_squared_error(actual, y_pred, squared=False),4)
         else:
             accuracy = round(accuracy_score(y_test, y_pred),4)
         
