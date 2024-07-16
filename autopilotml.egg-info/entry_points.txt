@@ -1,0 +1,3 @@
+[console_scripts]
+autopilotml = autopilotml.__main__:autopilotml
+autopilotml-ui = autopilotml.cli:main

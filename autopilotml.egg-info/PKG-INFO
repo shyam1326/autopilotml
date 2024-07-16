@@ -1,0 +1,295 @@
+Metadata-Version: 2.1
+Name: autopilotml
+Version: 1.0.10
+Summary: A package for automating machine learning tasks
+Home-page: https://github.com/shyam1326
+Author: Shyam Prasath
+Author-email: shshyam96@gmail.com
+License: MIT
+Project-URL: Source, https://github.com/shyam1326/autopilotml
+Project-URL: Bug Reports, https://github.com/shyam1326/autopilotml/issues
+Project-URL: Documentation, https://github.com/shyam1326/autopilotml/blob/main/README.md
+Keywords: autopilotml
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.8, <3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: alembic==1.12.1
+Requires-Dist: anyio==4.0.0
+Requires-Dist: appnope==0.1.3
+Requires-Dist: argon2-cffi==23.1.0
+Requires-Dist: argon2-cffi-bindings==21.2.0
+Requires-Dist: arrow==1.3.0
+Requires-Dist: asttokens==2.4.1
+Requires-Dist: async-lru==2.0.4
+Requires-Dist: attrs==23.1.0
+Requires-Dist: Babel==2.13.1
+Requires-Dist: beautifulsoup4==4.12.2
+Requires-Dist: bleach==6.1.0
+Requires-Dist: blinker==1.6.3
+Requires-Dist: certifi==2023.7.22
+Requires-Dist: cffi==1.16.0
+Requires-Dist: charset-normalizer==3.3.1
+Requires-Dist: click==8.1.7
+Requires-Dist: cloudpickle==2.2.1
+Requires-Dist: colorlog==6.7.0
+Requires-Dist: comm==0.1.4
+Requires-Dist: contourpy==1.1.1
+Requires-Dist: cycler==0.12.1
+Requires-Dist: databricks-cli==0.18.0
+Requires-Dist: debugpy==1.8.0
+Requires-Dist: decorator==5.1.1
+Requires-Dist: defusedxml==0.7.1
+Requires-Dist: dnspython==2.4.2
+Requires-Dist: docker==6.1.3
+Requires-Dist: entrypoints==0.4
+Requires-Dist: exceptiongroup==1.1.3
+Requires-Dist: executing==2.0.1
+Requires-Dist: fastjsonschema==2.18.1
+Requires-Dist: Flask==3.0.0
+Requires-Dist: fonttools==4.43.1
+Requires-Dist: fqdn==1.5.1
+Requires-Dist: gitdb==4.0.11
+Requires-Dist: GitPython==3.1.40
+Requires-Dist: greenlet==3.0.1
+Requires-Dist: gunicorn==21.2.0
+Requires-Dist: idna==3.4
+Requires-Dist: importlib-metadata==6.8.0
+Requires-Dist: ipykernel==6.26.0
+Requires-Dist: ipython==8.17.2
+Requires-Dist: ipython-genutils==0.2.0
+Requires-Dist: ipywidgets==8.1.1
+Requires-Dist: isoduration==20.11.0
+Requires-Dist: itsdangerous==2.1.2
+Requires-Dist: jedi==0.19.1
+Requires-Dist: Jinja2==3.1.2
+Requires-Dist: joblib==1.3.2
+Requires-Dist: json5==0.9.14
+Requires-Dist: jsonpointer==2.4
+Requires-Dist: jsonschema==4.19.2
+Requires-Dist: jsonschema-specifications==2023.7.1
+Requires-Dist: jupyter==1.0.0
+Requires-Dist: jupyter-console==6.6.3
+Requires-Dist: jupyter-events==0.8.0
+Requires-Dist: jupyter-lsp==2.2.0
+Requires-Dist: jupyter_client==8.5.0
+Requires-Dist: jupyter_core==5.5.0
+Requires-Dist: jupyter_server==2.9.1
+Requires-Dist: jupyter_server_terminals==0.4.4
+Requires-Dist: jupyterlab==4.0.7
+Requires-Dist: jupyterlab-pygments==0.2.2
+Requires-Dist: jupyterlab-widgets==3.0.9
+Requires-Dist: jupyterlab_server==2.25.0
+Requires-Dist: kiwisolver==1.4.5
+Requires-Dist: Mako==1.2.4
+Requires-Dist: Markdown==3.5.1
+Requires-Dist: MarkupSafe==2.1.3
+Requires-Dist: matplotlib==3.8.0
+Requires-Dist: matplotlib-inline==0.1.6
+Requires-Dist: mistune==3.0.2
+Requires-Dist: mlflow==2.8.0
+Requires-Dist: mysql-connector-python==8.2.0
+Requires-Dist: nbclient==0.8.0
+Requires-Dist: nbconvert==7.10.0
+Requires-Dist: nbformat==5.9.2
+Requires-Dist: nest-asyncio==1.5.8
+Requires-Dist: notebook==7.0.6
+Requires-Dist: notebook_shim==0.2.3
+Requires-Dist: numpy==1.26.1
+Requires-Dist: oauthlib==3.2.2
+Requires-Dist: optuna==3.4.0
+Requires-Dist: overrides==7.4.0
+Requires-Dist: packaging==23.2
+Requires-Dist: pandas==2.1.2
+Requires-Dist: pandocfilters==1.5.0
+Requires-Dist: parso==0.8.3
+Requires-Dist: pexpect==4.8.0
+Requires-Dist: Pillow==10.1.0
+Requires-Dist: platformdirs==3.11.0
+Requires-Dist: prometheus-client==0.18.0
+Requires-Dist: prompt-toolkit==3.0.39
+Requires-Dist: protobuf==4.21.12
+Requires-Dist: psutil==5.9.6
+Requires-Dist: psycopg2-binary==2.9.9
+Requires-Dist: ptyprocess==0.7.0
+Requires-Dist: pure-eval==0.2.2
+Requires-Dist: pyarrow==13.0.0
+Requires-Dist: pycparser==2.21
+Requires-Dist: Pygments==2.16.1
+Requires-Dist: PyJWT==2.8.0
+Requires-Dist: pymongo==4.5.0
+Requires-Dist: pyparsing==3.1.1
+Requires-Dist: python-dateutil==2.8.2
+Requires-Dist: python-json-logger==2.0.7
+Requires-Dist: pytz==2023.3.post1
+Requires-Dist: PyYAML==6.0.1
+Requires-Dist: pyzmq==25.1.1
+Requires-Dist: qtconsole==5.4.4
+Requires-Dist: QtPy==2.4.1
+Requires-Dist: querystring-parser==1.2.4
+Requires-Dist: referencing==0.30.2
+Requires-Dist: requests==2.31.0
+Requires-Dist: rfc3339-validator==0.1.4
+Requires-Dist: rfc3986-validator==0.1.1
+Requires-Dist: rpds-py==0.10.6
+Requires-Dist: scikit-learn==1.3.2
+Requires-Dist: scipy==1.11.3
+Requires-Dist: Send2Trash==1.8.2
+Requires-Dist: six==1.16.0
+Requires-Dist: smmap==5.0.1
+Requires-Dist: sniffio==1.3.0
+Requires-Dist: soupsieve==2.5
+Requires-Dist: SQLAlchemy==2.0.22
+Requires-Dist: sqlparse==0.4.4
+Requires-Dist: stack-data==0.6.3
+Requires-Dist: streamlit
+Requires-Dist: tabulate==0.9.0
+Requires-Dist: terminado==0.17.1
+Requires-Dist: threadpoolctl==3.2.0
+Requires-Dist: tinycss2==1.2.1
+Requires-Dist: tomli==2.0.1
+Requires-Dist: tornado==6.3.3
+Requires-Dist: tqdm==4.66.1
+Requires-Dist: traitlets==5.13.0
+Requires-Dist: types-python-dateutil==2.8.19.14
+Requires-Dist: typing_extensions==4.8.0
+Requires-Dist: tzdata==2023.3
+Requires-Dist: uri-template==1.3.0
+Requires-Dist: urllib3==2.0.7
+Requires-Dist: wcwidth==0.2.9
+Requires-Dist: webcolors==1.13
+Requires-Dist: webencodings==0.5.1
+Requires-Dist: websocket-client==1.6.4
+Requires-Dist: Werkzeug==3.0.1
+Requires-Dist: widgetsnbextension==4.0.9
+Requires-Dist: xgboost==2.0.1
+Requires-Dist: zipp==3.17.0
+
+<div align="center">
+  <p>
+    <a align="center" href="" target="_blank">
+      <img
+        width="1280"
+        src="images/autopilotml.png"
+    </a>
+  </p>
+
+
+[![version](https://badge.fury.io/py/autopilotml.svg)](https://badge.fury.io/py/autopilotml)
+<a href="https://pepy.tech/project/autopilotml"><img src="https://pepy.tech/badge/autopilotml" alt="total autopilotml downloads"></a>
+[![license](https://img.shields.io/pypi/l/autopilotml)](LICENSE)
+[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shyam1326/autopilotml/blob/main/autopilotml/research/autopilotml_examples.ipynb)
+
+
+</div>
+
+
+# Autopilotml
+> Automated machine learning library for analytics
+
+## Installation
+
+- `pip install autopilotml`
+
+## Usage
+
+### Load data
+
+```python
+from autopilotml import load_data, load_database
+
+# For csv files
+df = load_data(path = "dataset/titanic_train.csv", csv=True, **kwargs)
+
+# For excel notebook
+df = load_data(path = "dataset/titanic_train.xlsx", excel=True, **kwargs)
+
+# To Load data from Database
+
+# This framework supports sqlite, 'mysql', 'postgres', 'MongoDB'
+df = load_database(database_type='sqlite', sqlite_db_path = 'database.db', query='select * from employee_table')
+```
+
+### Data Preprocessing
+
+```python
+from autopilotml import preprocessing
+
+# If changing any values in the dictionary, whole dictionary has to be provided.
+
+df = preprocessing(dataframe=df, label_column='Survived',
+                                missing={
+                                    'type':'impute',
+                                    'drop_columns': False, 
+                                    'threshold': 0.25, 
+                                    'strategy_numerical': 'knn',
+                                    'strategy_categorical': 'most_frequent',
+                                    'fill_value': None},
+                                outlier={
+                                    'method': 'None',
+                                    'zscore_threshold': 3,
+                                    'iqr_threshold': 1.5,
+                                    'Lc': 0.05, 
+                                    'Uc': 0.95,
+                                    'cap': False})
+```
+
+### Data Transformation
+
+```python
+from autopilotml import transformation
+
+# If the target_transform is true, then the function  return 3 objects, (e.g) dataframe, feature encoder and target encoder
+# else it will return 2 objects dataframe and feature encoder
+df, encoder = transformation(dataframe=df,
+                                label_column='Survived', 
+                                type = 'ordinal',
+                                target_transform = False, 
+                                cardinality = True, 
+                                Cardinality_threshold = 0.3)
+```
+
+### Scaling
+
+```python
+# Here if target_scaling = True only applicable for regression then it will return 3 objects dataframe, feature scaler and target scaler
+
+from autopilotml import scaling
+
+df, scaler = scaling(df, label_column= 'Survived', type = 'standard', target_scaling = False)
+```
+
+### Feature Selecction
+
+```python
+from autopilotml import feature_selection
+
+df, selector = feature_selection(dataframe=df, label_column='Survived', 
+                                estimator='RandomForestClassifier',           
+                                type='rfe', max_features=10, 
+                                min_features=2, scoring= 'accuracy', 
+                                cv=5)
+```
+
+### Model Training
+
+```python
+from autopilotml import training
+
+model = training(dataframe=df, label_column='Survived', model_name='SVC', problem_type='Classification', 
+                target_scaler=None, test_split =0.15, hypertune=True, n_epochs=100)
+```
+
+### MLFlow - Track the Model Training and model Parameters
+
+```python
+!mlflow ui
+```
