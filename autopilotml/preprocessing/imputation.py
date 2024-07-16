@@ -4,9 +4,6 @@ import pandas as pd
 from sklearn.impute import SimpleImputer, KNNImputer
 
 
-
-
-
 def drop_missing_rows(df,**kwargs):
         
         """ This function is used to drop rows with missing values greater than the threshold.

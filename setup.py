@@ -3,7 +3,7 @@ import setuptools
 
 setuptools.setup(
     name="autopilotml",
-    version="1.0.3",
+    version="1.0.10",
     keywords=["autopilotml"],
     author="Shyam Prasath",
     author_email="shshyam96@gmail.com",
@@ -35,6 +35,7 @@ setuptools.setup(
     entry_points={
         "console_scripts": [
             "autopilotml=autopilotml.__main__:autopilotml",
+            "autopilotml-ui=autopilotml.cli:main",
         ],
     },
     

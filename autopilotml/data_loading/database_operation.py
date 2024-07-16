@@ -43,7 +43,7 @@ def read_postgres(query, host, port, database_name, username=None, password=None
         database_name (str): The name of the PostgreSQL database.
         username (str): The username of the PostgreSQL database. 
         password (str): The password of the PostgreSQL database. 
-        **kwargs: Keyword arguments to pass to pandas.read_sql.
+        **kwargs: Keyword arguments to pass to psycopg2.connect().
 
     Returns:
         pandas.DataFrame: The DataFrame containing the data from the PostgreSQL database.
@@ -73,7 +73,7 @@ def read_mysql(query, host, port, database_name, username=None, password=None, *
         database_name (str): The name of the MySQL database.
         username (str): The username of the MySQL database. 
         password (str): The password of the MySQL database. 
-        **kwargs: Keyword arguments to pass to pandas.read_sql.
+        **kwargs: Keyword arguments to pass to  mysql.connector.connect().
 
     Returns:
         pandas.DataFrame: The DataFrame containing the data from the MySQL database.
@@ -101,9 +101,9 @@ def read_mongo(host, port, database_name, collection_name, username=None, passwo
         port (int): The port of the MongoDB database.
         database_name (str): The name of the MongoDB database.
         collection_name (str): The name of the MongoDB collection.
-        username (str): The username of the MongoDB database.
-        password (str): The password of the MongoDB database.
-        **kwargs: Keyword arguments to pass to pandas.read_mongo.
+        username (str): optional: The username of the MongoDB database.
+        password (str): optional: The password of the MongoDB database.
+        **kwargs: Keyword arguments to pass to pymongo.MongoClient().
 
     Returns:
         pandas.DataFrame: The DataFrame containing the data from the MongoDB database.

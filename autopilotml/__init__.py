@@ -8,3 +8,4 @@ scaling,
 feature_selection,
 training,
 )
+from .cli import main

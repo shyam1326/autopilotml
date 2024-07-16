@@ -38,6 +38,7 @@ def load_data(path, csv = True, excel = False, **kwargs):
     Returns:
         pandas.DataFrame: The DataFrame containing the data.
     """
+
     # Load the data from the csv source
     if excel:
         df = read_excel(path, **kwargs)
@@ -347,7 +348,8 @@ def feature_selection(dataframe, label_column, estimator, type='rfecv', max_feat
 
 #Stage 7: Model Training
 
-def training(dataframe, label_column, model_name, problem_type, target_scaler=None, test_split =0.15, hypertune=True, n_epochs = 100):
+def training(dataframe, label_column, model_name, problem_type, target_scaler=None, test_split =0.15, 
+             hypertune=True, n_epochs = 100):
     """ This function is used to train the model.
 
     Args:
