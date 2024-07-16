@@ -7,7 +7,6 @@
     </a>
   </p>
 
-
 [![version](https://badge.fury.io/py/autopilotml.svg)](https://badge.fury.io/py/autopilotml)
 <a href="https://pepy.tech/project/autopilotml"><img src="https://pepy.tech/badge/autopilotml" alt="total autopilotml downloads"></a>
 [![license](https://img.shields.io/pypi/l/autopilotml)](LICENSE)
