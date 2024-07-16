@@ -3,7 +3,7 @@
     <a align="center" href="" target="_blank">
       <img
         width="1280"
-        src="images/autopilotml.png"
+        src="https://raw.githubusercontent.com/shyam1326/autopilotml/main/images/autopilotml.png"
     </a>
   </p>
 

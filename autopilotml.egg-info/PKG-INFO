@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: autopilotml
-Version: 1.0.10
+Version: 1.0.14
 Summary: A package for automating machine learning tasks
 Home-page: https://github.com/shyam1326
 Author: Shyam Prasath
@@ -178,7 +178,7 @@ Requires-Dist: zipp==3.17.0
     <a align="center" href="" target="_blank">
       <img
         width="1280"
-        src="images/autopilotml.png"
+        src="https://raw.githubusercontent.com/shyam1326/autopilotml/main/images/autopilotml.png"
     </a>
   </p>
 

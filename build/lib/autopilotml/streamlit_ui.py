@@ -15,7 +15,7 @@ warnings.filterwarnings("ignore")
 
 def main():
     # set the logo
-    st.image("images/autopilotml_1.jpeg", use_column_width=True)
+    st.image("https://raw.githubusercontent.com/shyam1326/autopilotml/main/images/autopilotml_1.jpeg", use_column_width=True)
 
     data = st.file_uploader("Upload a file", type=["csv"])
     if data:
