@@ -148,3 +148,4 @@ Werkzeug==3.0.1
 widgetsnbextension==4.0.9
 xgboost==2.0.1
 zipp==3.17.0
+gensim
